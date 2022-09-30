@@ -17,7 +17,7 @@ int main()
 {
     //Time how long it takes to perform a printf
     tmr1.start();
-    printf("Hello World!\n");
+    printf("Hello World! How are you?\n");
     tmr1.stop();
 
     //Print out how long it took
