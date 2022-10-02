@@ -1,4 +1,5 @@
 #include "uop_msb.h"
+#include <cstdio>
 #include <cstring>
 using namespace uop_msb;
 
@@ -15,6 +16,7 @@ DigitalOut ledGrn(TRAF_GRN1_PIN);
 // Timers (modified version from Timer)
 TimerCompat tmr_debounce2;
 TimerCompat tmr_debounce3;
+TimerCompat tmr_debounce_blue;
 TimerCompat tmr_flash;
 
 // Switch states
@@ -22,15 +24,18 @@ typedef enum {
   WAIT_FOR_PRESS,
   WAITING_1,
   WAIT_FOR_REL,
+  ENTER_NUMBER,
   WAITING_2
 } SWITCH_STATE;
 
 SWITCH_STATE sw_state2 = WAIT_FOR_PRESS;
 SWITCH_STATE sw_state3 = WAIT_FOR_PRESS;
+SWITCH_STATE sw_state_blue = WAIT_FOR_PRESS;
 
 int main() {
   // Start flashing timer
   tmr_flash.start();
+  unsigned int num_time = 500;
 
   while (true) {
 
@@ -38,14 +43,26 @@ int main() {
     long long flash_time = tmr_flash.read_ms();
     int sw2 = SW2.read();
     int sw3 = SW3.read();
+    int swBlue = SWB.read();
     long long sw2_time = tmr_debounce2.read_ms();
     long long sw3_time = tmr_debounce3.read_ms();
+    long long sw_blue_time = tmr_debounce_blue.read_ms();
 
     // Update yellow LED state and mealy outputs
-    if (flash_time >= 500) {
+    if (flash_time >= num_time) {
       ledYel = !ledYel;
       tmr_flash.reset();
     }
+
+    /*if (swBlue == 1)
+    {
+        wait_us(500000);
+        while (swBlue == 1);
+        printf("\nEnter the delay in ms\n");
+        int delay_ms;
+        num_time = scanf("%d", &delay_ms);
+        printf ("\n You have entered %d\n", num_time);
+    }*/
 
     // Update switch2 state machine and mealy outputs
     switch (sw_state2) {
@@ -119,5 +136,6 @@ int main() {
     default:
       sw_state3 = WAIT_FOR_PRESS;
     }
+
   }
 }

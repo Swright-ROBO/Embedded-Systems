@@ -13,6 +13,12 @@ DigitalOut ledRed(TRAF_RED1_PIN);
 // Timer(modified version from Timer)
 TimerCompat tmr1;
 
+/*void debounce ()
+{
+    tmr1.reset();
+    while (tmr1.elapsed_time() < 50ms);
+}*/
+
 int main()
 {
     //Time how long it takes to perform a printf
@@ -29,18 +35,13 @@ int main()
     while (true) {
         //Wait for switch press
         while (SW_BLUE == 0);
-
+        //debounce();
+        wait_us(50000);
+        while (SW_BLUE == 1);
+        //debounce();
+        wait_us(50000);
         //Turn on LED
-        ledRed = 1;
-
-        //Wait for 500ms
-        tmr1.reset();
-        while (tmr1.elapsed_time() < 500ms); //How about this for C++ magic :)
-
-        wait_us(500000);
-
-        //Turn off LED
-        ledRed = 0;
+        ledRed = !ledRed;
     }
 }
 
