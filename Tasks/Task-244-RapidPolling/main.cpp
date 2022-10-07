@@ -43,6 +43,7 @@ int main()
     int btnB_prev = buttonB;
     int btnA_curr;
     int btnB_curr;
+    microseconds edit_time = 100ms;
     
     microseconds tm = tmr.elapsed_time();   //Part of the C++ chrono class
     
@@ -99,8 +100,9 @@ int main()
             disp = count;              
         }
 
+        edit_time = 90ms + (count+1)*10ms;
         // LED
-        if (tm >= 250ms) {
+        if (tm >= edit_time) {
             greenLED = !greenLED;
             tmr.reset();
         }

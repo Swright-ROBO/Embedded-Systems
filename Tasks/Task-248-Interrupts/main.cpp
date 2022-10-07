@@ -33,7 +33,7 @@ int main()
 {
     //Set up interrupts
     btnA.rise(&funcA);
-    tick.attach(&funcTmr, 500ms);
+    tick.attach(&funcTmr, 1000ms);
     
     //Main loop - mostly sleeps :)
     while (true) {

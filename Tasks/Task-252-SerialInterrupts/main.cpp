@@ -59,7 +59,10 @@ void on_rx_interrupt()
                 ledTicker.detach();
                 ledTicker.attach(&onTick, microseconds(T));
             }
-            break;            
+            break;
+        case 'd':
+
+            break;         
         default:
             //Echo typed character to the terminal
             serial_port.write(&p,1);

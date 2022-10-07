@@ -8,11 +8,10 @@ ComplexNumber_C complexAdd(const ComplexNumber_C a, const ComplexNumber_C b) {
     return y;
 }
 
-ComplexNumber_C complexConjugate(ComplexNumber_C a)
+void complexConjugate(ComplexNumber_C* a)
 {
-    a.real = -a.real;
-    a.imag = -a.imag;
-    return a;
+    a->real = -a->real;
+    a->imag = -a->imag;
 }
 
 
