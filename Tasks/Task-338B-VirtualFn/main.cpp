@@ -15,7 +15,7 @@ class Flashy : public DigitalOut {
     bool _enabled = false;
 
     //Can be overridden!
-    virtual void timerISR()  {
+    void timerISR()  {
         //Call the baseclass version to toggle the GPIO
         DigitalOut::write(1-this->read());
         
@@ -95,7 +95,7 @@ class Flashy : public DigitalOut {
 class Flickery : public Flashy {
     protected:
     
-    virtual void timerISR()  {
+    void timerISR()  {
         // Call the baseclass version to flicker the GPIO
         // Not nice this
         int r = rand();
@@ -116,7 +116,7 @@ class Flickery : public Flashy {
 
 DigitalIn blueButton(USER_BUTTON);
 
-//#define EXP1
+#define EXP1
 int main()
 {
     #ifndef EXP1

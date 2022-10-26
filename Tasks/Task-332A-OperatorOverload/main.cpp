@@ -64,7 +64,7 @@ public:
         double sum = this->getValue() + u.getValue();
         this->setValue(sum);
     }
-    DoubleNumber operator+(DoubleNumber& u) {
+    DoubleNumber add(DoubleNumber& u) {
         DoubleNumber result;
         result = *this;
         result += u;
@@ -86,7 +86,18 @@ public:
     {
         // Return a true if u is equal to `this`
         // ** TO BE DONE BY THE STUDENT **
-        return false;
+        DoubleNumber check;
+        check = *this;
+        check = check - u;
+
+        if(check > 0 || check < 0)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
 
     operator double() {
@@ -104,14 +115,30 @@ int main()
     DoubleNumber n2;
     DoubleNumber n3;
 
+    DoubleNumber y;
+    DoubleNumber p(10.0);
+    DoubleNumber q(20.0);
+
+    DoubleNumber test(20.0);
+
+    bool isEqual;
+
     //setValue function overloading  
     n1 = 10.0;
     n1 += 1.0;      // Equivalent to n1.operator+=(1.0);
     n2 = "-3.0";
     n3 = n2;
 
+    y = p.add(q);
+
+    isEqual = test == q;
+
     DoubleNumber sum = (n0 + n1 + n2 + n3);
     cout << sum << endl;
+
+    cout << "Added number is " << y << endl;
+
+    cout << isEqual << endl;
 
     while (true) {
 

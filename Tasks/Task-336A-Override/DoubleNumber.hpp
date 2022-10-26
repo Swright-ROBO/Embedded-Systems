@@ -66,7 +66,7 @@ public:
         double sum = this->getValue() + u.getValue();
         this->setValue(sum);
     }
-    DoubleNumber operator+(DoubleNumber& u) {
+    virtual DoubleNumber operator+(DoubleNumber& u) {
         DoubleNumber result;
         result = *this;
         result += u;

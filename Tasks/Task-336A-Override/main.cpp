@@ -23,10 +23,17 @@ int main()
 
     //Challenge - try and understand this ;)
     cout << c1.asDoubleNumber().asString() << endl;
+    cout << c1.asDoubleNumber() << endl;
 
     //TODO - write an overloaded + operator
     DoubleNumber sum1 = c0 + c1 + d0 + d1;
-    cout << sum1 << endl;
+    ComplexNumber sum2 = c0 + c1;
+    cout << c0.asString() << endl;
+    cout << c1.asString() << endl;
+    cout << d0.asString() << endl;
+    cout << d1.asString() << endl;
+    cout << sum1.asString() << endl;
+    cout << sum2.asString() << endl;
 
     while (true) {
 
