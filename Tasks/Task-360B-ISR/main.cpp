@@ -1,5 +1,6 @@
 #include "mbed.h"
 #include "SwitchManager.hpp"
+#include <cstdint>
 
 #define TRAF_GRN1_PIN PC_6
 #define TRAF_YEL1_PIN PC_3
@@ -28,6 +29,10 @@ int main() {
     //Now loop forever
     while(1) { 
         sleep();
-        printf("count=%u\n",SwitchManager::getCount());
+        /* Not quite right, need to also protect where all setting and calling of count is used */
+        CriticalSectionLock::enable();
+        uint32_t temp = SwitchManager::getCount();
+        CriticalSectionLock::disable();
+        printf("count=%u\n",temp);
     };
 }

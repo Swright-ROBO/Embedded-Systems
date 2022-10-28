@@ -35,8 +35,10 @@ public:
 
   //This is a STATIC member of the CLASS
   static uint32_t getCount() { 
+      uint32_t temp;
       CriticalSectionLock lock;
-      return count; 
+      temp = count;
+      return temp; 
   }
 };
 
