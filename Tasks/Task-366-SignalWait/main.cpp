@@ -38,7 +38,7 @@ int main() {
     mainThreadID = ThisThread::get_id();
 
     while (true) {
-        ThisThread::flags_wait_all(1 | 2);  // (1 | 2) => 3 
+        ThisThread::flags_wait_all(3);  // (1 | 2) => 3 
         printf("Buttons C and D have been pressed\n");
         ThisThread::sleep_for(50ms);    //Debounce
         ThisThread::flags_clear(1 | 2);     //Clear both flags
